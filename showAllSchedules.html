@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Questions Bank - Yaksha</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+
+
+      
+    <script>
+    function callUpload(){
+     $("#fileFromUserForm_rem").click();
+    }
+    
+    function notDone(){
+    
+    }
+    
+    
+    $(document).ready(function() {
+	    
+	   var file = $('[name="fileFromUserForm_rem"]');
+	   var imgContainer = $('#imgContainer');
+	   
+		
+		
+	var fileU = document.getElementById('fileFromUserForm_rem');
+	fileU.addEventListener("change", function () {
+		  if (fileU.files.length > 0) {
+		   var filename = $.trim(file.val());
+		
+		if (!(isXlsx(filename) )) {
+		    notify('Error', 'Please select an xlsx file to upload');
+		    return;
+		}
+		
+		$.ajax({
+		   xhr: function() {
+		    var xhr = new window.XMLHttpRequest();
+		    return xhr;
+		  },
+		   url: 'uploadUsers',
+		    type: "POST",
+		    data: new FormData(document.getElementById("fileForm")),
+		    enctype: 'multipart/form-data',
+		    processData: false,
+		    contentType: false
+		  }).done(function(data) {
+		    notify('Success', 'File Upload Successful');
+		   
+		  }).fail(function(jqXHR, textStatus) {
+		      notify('Failure', 'File Upload Failed. Please contact Administrator');
+		  });
+		  document.getElementById('fileFromUserForm_rem').value = null;
+		    return;
+		  }
+		 
+		});
+	  
+	});
+	
+		function notify(messageType, message){
+		 var notification = 'Information';
+			 $(function(){
+				 new PNotify({
+				 title: notification,
+				 text: message,
+				 type: messageType,
+				 styling: 'bootstrap3',
+				 hide: true
+			     });
+			 }); 	
+		}
+     
+    
+    </script> 
+
+
+    </head>
+    <body>
+        <div class="master-container">
+            <header>
+                <div class="container-fluid">
+                    <button class="nav-bar" type="button">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a href="#" class="yaksha-logo my-auto">
+                        YAK<span>SHA</span>
+                    </a>
+                    <nav class="">
+                        <button class="nav-bar-close" type="button">
+                            <i class="fa fa-close"></i>
+                        </button>
+                        <a href="dashboard.html">
+                            Dashboard
+                        </a>
+                        <a href="questions.html">
+                            Question Bank
+                        </a>
+                        <a href="tests.html">
+                            Tests
+                        </a>
+                        <a href="#" class="view-more active">
+                            LMS Admin Users <i class="fa fa-angle-down"></i>
+                        </a>
+                        <div class="more-nav">
+                            <a href="skills.html">
+                                Skills
+                            </a>
+                            <a href="cluster-management.html">
+                                Cluster Management
+                            </a>
+                            <a href="multi-file-test-result.html">
+                                Multi-file Test Results
+                            </a>
+                            <a href="#">
+                                Domain based Results
+                            </a>
+                            <a href="#">
+                                Modules Management
+                            </a>
+                            <a href="#">
+                                License Management
+                            </a>
+                            <a href="#">
+                                Results
+                            </a>
+                            <a href="#">
+                                Code Analysis Reports
+                            </a>
+                            <a href="#">
+                                Skill based Reports
+                            </a>
+                            <a href="#">
+                                Recomm Settings
+                            </a>
+                            <a href="#">
+                                Single File Test Reports
+                            </a>
+                            <a href="#">
+                                Test Links Management
+                            </a>
+                            <a href="#">
+                                LMS Admin Users
+                            </a>
+                            <a href="#">
+                                Job Description Management
+                            </a>
+                            <a href="#">
+                                Test Domain Attemps Mangement
+                            </a>
+                            <a href="#">
+                                Schedule Management
+                            </a>
+                            <a href="#">
+                                Verify Data
+                            </a>
+                            <a href="tenants.html">
+                                Tenant Management
+                            </a>
+                            <a href="users.html">
+                                Users
+                            </a>
+                        </div>
+                    </nav>
+                    <div class="user-info">
+                        <span class="my-auto">Firstname, Lastname</span>
+                        <div class="thumbnail my-auto">
+                            <span>TJ</span>
+                        </div>
+                        <button class="sign-out" type="button">
+                            <i class="fa fa-sign-out"></i>
+                        </button>
+                    </div>
+                </div>
+    </header>
+    <section class="content-section">
+    	<div class="content-admin">
+             <div class="row">
+                   <div class="col-md-12">
+                   	    <div class="float-right mb-5 mr-5">
+                        <h5 class="adminpage"><a href="#">Add New</a>
+                        	<a href="#"><span class="signOut text-danger">Sign Off</span></a></h5>
+                        </div>
+                   </div>	
+             </div>	
+        </div>      
+        <div class="admin-header">
+             <div class="row">
+                   <div class="col-md-10">
+                   	    <div class="float-left mb-2 ml-5">
+                        <h4 class="header-user text-success">Scheduled Tests</h4>
+                        </div>
+                   </div>
+                   <div class="col-md-1">
+                        <div class="float-right mb-2 mr-5">
+                        <h4 class="header-user1 text-success">Sort</h4>
+                        </div>
+                   </div>	
+                   <div class="col-md-1">
+                        <div class="float-right mb-2 mr-5">
+                        <h4 class="header-user1 text-success">Filter</h4>
+                        </div>
+                   </div>   
+             </div>	
+        </div>     
+            <div class="admin-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive text-center" >
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>SI No</th>
+                                        <th>Test Title</th>
+                                        <th>Date/Month/Year-timing</th>
+                                        <th>Delete Schedule</th>
+                                        <th>Update Schedule</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Java</td>
+                                        <td>26/02/2021</td>
+                                         <td>26/02/2021</td>
+                                         <td>27/03/2021</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>C++</td>
+                                        <td>28/02/2021</td>
+                                         <td>28/02/2021</td>
+                                         <td>01/03/2021</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>-->
+                   	</div> 	
+                </div>	
+            </div>	
+        </div>        
+    </section>
+<footer>
+    <div class="container-fluid text-right bg-secondary">
+    <span class="copyright text-white">
+        &copy; Copyright 2020-2021 - Yaksha
+    </span>
+            <a href="#">
+                Terms and Conditions
+            </a>
+            <a href="#">
+                Privacy Policy
+            </a>
+    </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+    function notify(messageType, message){
+		 var notification = 'Information';
+			 $(function(){
+				 new PNotify({
+				 title: notification,
+				 text: message,
+				 type: messageType,
+				 styling: 'bootstrap3',
+				 hide: true
+			     });
+			 }); 	
+		}
+		
+		function confirmDelete(id) {
+			
+           (new PNotify({
+		    title: 'Confirmation Needed',
+		    text: 'Are you sure? Do you really want to delete this License! This license may be mapped to existing modules?',
+		    icon: 'glyphicon glyphicon-question-sign',
+		    hide: false,
+		    confirm: {
+			confirm: true
+		    },
+		    buttons: {
+			closer: false,
+			sticker: false
+		    },
+		    history: {
+			history: false
+		    }
+		})).get().on('pnotify.confirm', function() {
+		    window.location = "deleteLicense?licenseId="+id;
+		}).on('pnotify.cancel', function() {
+		   
+		});
+    }
+</script>
+<script>
+<script type="text/javascript">
+                $(function () {
+                    $('#datetimepicker1').datetimepicker();
+                });
+            </script>
+</script>
+</body>
+</html>
